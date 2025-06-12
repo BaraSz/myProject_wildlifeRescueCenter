@@ -35,10 +35,11 @@ namespace WildlifeRescueCenter
             Console.WriteLine($"Animal species: {AnimalSpecies}, ID:{IDofAnimal}, injury: {Injury}, Back to wild: {BackToWild}");
         }
 
-        public void IDofAnimalSplit()
+        public string IDofAnimalSplit()
         {
             string[] animalIDsplit = IDofAnimal.Split("-", StringSplitOptions.RemoveEmptyEntries);
             string animalPlaceToStay = animalIDsplit[1];
+            return animalPlaceToStay;
         }
     }
     

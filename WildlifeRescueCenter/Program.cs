@@ -8,16 +8,16 @@ class Program
 {
     static void Main(string[] args)
     {
-        /*--IP = IndoorPLACE, OP-OutDoorPLACE Junior - Senior TakeCarer-*/
-        Animals Hedgehog = new Animals("Hedgehog", "HO1-IP-JS", "bad condition", true);
-        Animals Kingfisher = new Animals("Kingfisher", "KO2-IP-S", "broken wing", false);
-        Animals Roedeer_K03 = new Animals("Roe deer", "RO3-OP-S", "orphan", true);
-        Animals Roedeer_R04 = new Animals("Roe deer", "RO4-OP-S", "orphan", true);
-        Animals Fox = new Animals("Fox", "FO5-OP", "blind-JS", false);
+        /*--IE = Indoor enclosures , OE-OutDoor enclosures  Junior - Senior TakeCarer-*/
+        Animals Hedgehog = new Animals("Hedgehog", "HO1-IE-JS", "bad condition", true);
+        Animals Kingfisher = new Animals("Kingfisher", "KO2-IE-S", "broken wing", false);
+        Animals Roedeer_K03 = new Animals("Roe deer", "RO3-OE-S", "orphan", true);
+        Animals Roedeer_R04 = new Animals("Roe deer", "RO4-OE-S", "orphan", true);
+        Animals Fox = new Animals("Fox", "FO5-OE", "blind-JS", false);
 
         List<Animals> currentAnimals = new List<Animals>() { Hedgehog, Kingfisher, Roedeer_K03, Roedeer_R04, Fox };
 
-        /*--IP = INNERPLACE, OP-OUTERPLACE J 0-1 S 3+ -*/
+        /*-IE = Indoor enclosures , OE-OutDoor enclosures  J 0-1 S 3+ -*/
         Employees Albert = new Employees("Albert", "V&05", DateTime.Parse("22.08.1991"), "TakeCarer", DateTime.Parse("01.02.2025"), 28000);
         Employees Jakub = new Employees("Jakub", "V&02", DateTime.Parse("20.10.1984"), "Vet", DateTime.Parse("01.08.2020"), 45000);
         Employees Meda = new Employees("Meda", "T&04", DateTime.Parse("15.04.2000"), "TakeCarer", DateTime.Parse("01.06.2022"), 28000);
@@ -27,11 +27,11 @@ class Program
 
         List<Employees> currentEmployees = new List<Employees>() { Albert, Jakub, Meda, Lubos, Monika, Zuzana };
 
-        Worksite OutdoorPlace = new Worksite("OutdoorPlace", 15);
-        Worksite IndoorPlace = new Worksite("IndoorPlace", 5);
+        Worksite Outdoorenclosures = new Worksite("Outdoor enclosures", 15);
+        Worksite Indoorenclosures = new Worksite("Indoor enclosures", 5);
         Worksite OutDoor = new Worksite("Outdoor", 0);
 
-        List<Worksite> worksites = new List<Worksite>() { OutdoorPlace, IndoorPlace, OutDoor };
+        List<Worksite> worksites = new List<Worksite>() { Outdoorenclosures, Indoorenclosures, OutDoor };
 
         while (true)
         {
@@ -302,14 +302,29 @@ class Program
                 }
             }
 
-            /*----------------------------------------------------------------------
-                else if (userChoice == "3")
-                {
 
-                        if (animalPlaceToStay == "IP")
-                            Console.WriteLine("In the inner place are these animals:");
+            else if (userChoice == "3")
+            {
+                Console.WriteLine("Animals in the indoor enclosures are:");
+                foreach (var a in currentAnimals)
+                {
+                    if (a.IDofAnimalSplit() == "IP")
+                    {
+                        Console.WriteLine($"{a.AnimalSpecies}, ID: {a.IDofAnimal}");
+                    }
                 }
-            --------------------------------------------------------------------*/
+                Console.WriteLine();
+                Console.WriteLine("Animals in the outdoor enclosures are:");
+                foreach (var a in currentAnimals)
+                {
+                    if (a.IDofAnimalSplit() == "OP")
+                    {
+                        Console.WriteLine($"{a.AnimalSpecies}, ID: {a.IDofAnimal}");
+                    }
+                }
+
+            }
+
 
             else if (userChoice == "4")
             {

@@ -308,7 +308,7 @@ class Program
                 Console.WriteLine("Animals in the indoor enclosures are:");
                 foreach (var a in currentAnimals)
                 {
-                    if (a.IDofAnimalSplit() == "IP")
+                    if (a.IDofAnimalSplit() == "IE")
                     {
                         Console.WriteLine($"{a.AnimalSpecies}, ID: {a.IDofAnimal}");
                     }
@@ -317,7 +317,7 @@ class Program
                 Console.WriteLine("Animals in the outdoor enclosures are:");
                 foreach (var a in currentAnimals)
                 {
-                    if (a.IDofAnimalSplit() == "OP")
+                    if (a.IDofAnimalSplit() == "OE")
                     {
                         Console.WriteLine($"{a.AnimalSpecies}, ID: {a.IDofAnimal}");
                     }

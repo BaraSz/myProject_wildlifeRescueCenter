@@ -25,16 +25,12 @@ namespace WildlifeRescueCenter
             BackToWild = backToWild;
         }
 
-        public void listOfAnimals()
+        public void ListOfAnimals()
         {
             Console.WriteLine($"Animal species: {AnimalSpecies}, ID:{IDofAnimal}, injury: {Injury}, Back to wild: {BackToWild}");
         }
 
-        public void infoAboutAnimal()
-        {
-            Console.WriteLine($"Animal species: {AnimalSpecies}, ID:{IDofAnimal}, injury: {Injury}, Back to wild: {BackToWild}");
-        }
-
+        // Doporucil bych ulozit EnclosureId separatne, at ho nemusime pokazde parsovat ze zvirete
         public string IDofAnimalSplitEnclosure()
         {
             string[] animalIDsplit = IDofAnimal.Split("-", StringSplitOptions.RemoveEmptyEntries);
@@ -42,6 +38,7 @@ namespace WildlifeRescueCenter
             return animalPlaceToStay;
         }
 
+        // To same pro CareTakerId
         public string IDofAnimalSplitCareTaker()
         {
             string[] animalIDsplit = IDofAnimal.Split("-", StringSplitOptions.RemoveEmptyEntries);

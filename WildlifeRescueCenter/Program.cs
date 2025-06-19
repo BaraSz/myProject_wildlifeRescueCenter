@@ -17,15 +17,15 @@ class Program
         Animals Roedeer_R04 = new Animals("Roe deer", "RO4-OE-S", "orphan", true);
         Animals Fox = new Animals("Fox", "FO5-OE-J", "blind", false);
 
-        List<Animals> currentAnimals = new List<Animals>() { Hedgehog,  Kingfisher, Roedeer_K03, Roedeer_R04, Fox };
+        List<Animals> currentAnimals = new List<Animals>() { Hedgehog, Kingfisher, Roedeer_K03, Roedeer_R04, Fox };
 
         /*-IE = Indoor enclosures , OE-OutDoor enclosures  J 0-3 S 3+ -*/
-        Employees Albert = new Employees("Albert", "V&05", DateTime.Parse("22.08.1991"), "Caretaker", DateTime.Parse("01.02.2025"), 28000);
-        Employees Jakub = new Employees("Jakub", "V&02", DateTime.Parse("20.10.1984"), "Vet", DateTime.Parse("01.08.2020"), 45000);
-        Employees Meda = new Employees("Meda", "T&04", DateTime.Parse("15.04.2000"), "Caretaker", DateTime.Parse("01.06.2021"), 28000);
-        Employees Lubos = new Employees("Lubos", "T&01", DateTime.Parse("23.07.1988"), "Caretaker", DateTime.Parse("01.10.2015"), 28000);
-        Employees Monika = new Employees("Monika", "O&03", DateTime.Parse("04.11.1995"), "Office", DateTime.Parse("01.10.2020"), 35000);
-        Employees Zuzana = new Employees("Zuzana", "T&05", DateTime.Parse("20.06.1998"), "Caretaker", DateTime.Parse("01.06.2024"), 28000);
+        Employees Albert = new Employees("Albert", "V&05", new DateTime(1984, 10, 20), "Caretaker", new DateTime(2025, 2, 1), 28000);
+        Employees Jakub = new Employees("Jakub", "V&02", new DateTime(1984, 10, 20), "Vet", new DateTime(2020, 8, 1), 45000);
+        Employees Meda = new Employees("Meda", "T&04", new DateTime(2000, 4, 15), "Caretaker", new DateTime(2021, 6, 1), 28000);
+        Employees Lubos = new Employees("Lubos", "T&01", new DateTime(1988, 7, 23), "Caretaker", new DateTime(2015, 10, 1), 28000);
+        Employees Monika = new Employees("Monika", "O&03", new DateTime(1995, 11, 4), "Office", new DateTime(2020, 10, 1), 35000);
+        Employees Zuzana = new Employees("Zuzana", "T&05", new DateTime(1998, 6, 20), "Caretaker", new DateTime(2024, 6, 1), 28000);
 
         List<Employees> currentEmployees = new List<Employees>() { Albert, Jakub, Meda, Lubos, Monika, Zuzana };
         List<Employees> takecarerOddWeek = new List<Employees>() { Albert, Meda };
@@ -34,12 +34,7 @@ class Program
         Enclosures Outdoorenclosures = new Enclosures("Outdoor enclosures", 15);
         Enclosures Indoorenclosures = new Enclosures("Indoor enclosures", 2);
 
-        List<Enclosures> worksites = new List<Enclosures>() { Outdoorenclosures, Indoorenclosures};
-
-        int numberOfAnimal = 0;
-        int numberOfAnimalIndoor = 0;
-        int numberOfAnimalOutdoor = 0;
-
+        List<Enclosures> worksites = new List<Enclosures>() { Outdoorenclosures, Indoorenclosures };
 
         while (true)
         {
@@ -147,7 +142,7 @@ class Program
                     {
                         foreach (var employee in currentEmployees.OrderBy(e => e.Name))
                         {
-                            employee.listOfEmployees();
+                            employee.ListOfEmployees();
                         }
                     }
 
@@ -195,6 +190,9 @@ class Program
                                     bool backToWild = bool.Parse(backToWildText);
 
                                     Animals addAnimal = new Animals(animalSpecies, idOfAnimal, injury, backToWild);
+
+                                    var numberOfAnimalIndoor = 0;
+                                    var numberOfAnimalOutdoor = 0;
 
                                     foreach (var a in currentAnimals)
                                     {
@@ -272,7 +270,7 @@ class Program
                     {
                         foreach (var animal in currentAnimals.OrderBy(a => a.AnimalSpecies))
                         {
-                            animal.listOfAnimals();
+                            animal.ListOfAnimals();
                         }
                         Console.WriteLine();
                     }
@@ -428,7 +426,7 @@ class Program
             else if (userChoice == "3")
             {
                 Console.WriteLine("INDOOR ENCLOSURES: ");
-                Console.WriteLine($"The enclosure is {CapacityOfIndoorEnclosure(numberOfAnimal, currentAnimals)}/{Indoorenclosures.Capacity} full");
+                Console.WriteLine($"The enclosure is {CapacityOfIndoorEnclosure(currentAnimals)}/{Indoorenclosures.Capacity} full");
                 Console.WriteLine();
                 var animalIndoorEnclosureJunior = currentAnimals
                                             .Where(a => a.IDofAnimalSplitEnclosure() == "IE" && a.IDofAnimalSplitCareTaker() == "J");
@@ -474,7 +472,7 @@ class Program
                 }
 
                 Console.WriteLine("OUTDOOR ENCLOSURES: ");
-                Console.WriteLine($"The enclosure is {CapacityOfOutdoorEnclosure(numberOfAnimal, currentAnimals)}/{Outdoorenclosures.Capacity} full");
+                Console.WriteLine($"The enclosure is {CapacityOfOutdoorEnclosure(currentAnimals)}/{Outdoorenclosures.Capacity} full");
                 Console.WriteLine();
                 var animalOutdoorEnclosureJunior = currentAnimals
                                             .Where(a => a.IDofAnimalSplitEnclosure() == "OE" && a.IDofAnimalSplitCareTaker() == "J");
@@ -574,8 +572,9 @@ class Program
 
 
 
-    public static int CapacityOfIndoorEnclosure(int numberOfAnimal, List<Animals> animals)
+    public static int CapacityOfIndoorEnclosure(List<Animals> animals)
     {
+        int numberOfAnimal = 0;
         foreach (var a in animals)
         {
             if (a.IDofAnimalSplitEnclosure() == "IE")
@@ -588,8 +587,9 @@ class Program
         return numberOfAnimal;
     }
 
-    public static int CapacityOfOutdoorEnclosure(int numberOfAnimal, List<Animals> animals)
+    public static int CapacityOfOutdoorEnclosure(List<Animals> animals)
     {
+        var numberOfAnimal = 0;
         foreach (var a in animals)
         {
             if (a.IDofAnimalSplitEnclosure() == "OE")

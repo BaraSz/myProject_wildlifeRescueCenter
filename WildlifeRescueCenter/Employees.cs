@@ -31,18 +31,18 @@ namespace WildlifeRescueCenter
         {
             int totalMonthWorked = ((DateTime.Now.Year - StartDate.Year) * 12) + (DateTime.Now.Month - StartDate.Month);
             int totalYearWorked = totalMonthWorked / 12;
-            double raiseOfSalary = Salary + Math.Round(Salary * totalYearWorked * 0.1);
+            double raiseOfSalary = Salary + Math.Round(Salary * totalYearWorked * 0.1); // Tech 10% bych ulozil do nejake konstanty pro prehlednost :)
 
             return raiseOfSalary;
         }
-        public void listOfEmployees()
+        public void ListOfEmployees()
         {
             Console.WriteLine($"Employees name: {Name}, ID:{ID}, date of Birth: {DateOfBirth.ToString("dd.MM.yyyy")}, position: {Position}, date of start: {StartDate.ToString("dd.MM.yyyy")}, salary:{SalaryRaise(StartDate)}");
         }
 
         public void EmployeeInfo()
         {
-            Console.WriteLine($"Employees name: {Name}, ID:{ID}, date of Birth: {DateOfBirth.ToString("dd.MM.yyyy")}, position: {Position}, date of start: {StartDate.ToString("dd.MM.yyyy")}, salary:{SalaryRaise(StartDate)}");
+            ListOfEmployees();
         }
 
         public int CareTakerLevel()

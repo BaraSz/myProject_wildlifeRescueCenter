@@ -147,7 +147,7 @@ class Program
                     {
                         foreach (var employee in currentEmployees.OrderBy(e => e.Name))
                         {
-                            employee.listOfEmployees();
+                            employee.ListOfEmployees();
                         }
                     }
 
@@ -272,7 +272,7 @@ class Program
                     {
                         foreach (var animal in currentAnimals.OrderBy(a => a.AnimalSpecies))
                         {
-                            animal.listOfAnimals();
+                            animal.ListOfAnimals();
                         }
                         Console.WriteLine();
                     }

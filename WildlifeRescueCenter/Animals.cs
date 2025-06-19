@@ -25,12 +25,7 @@ namespace WildlifeRescueCenter
             BackToWild = backToWild;
         }
 
-        public void listOfAnimals()
-        {
-            Console.WriteLine($"Animal species: {AnimalSpecies}, ID:{IDofAnimal}, injury: {Injury}, Back to wild: {BackToWild}");
-        }
-
-        public void infoAboutAnimal()
+        public void ListOfAnimals()
         {
             Console.WriteLine($"Animal species: {AnimalSpecies}, ID:{IDofAnimal}, injury: {Injury}, Back to wild: {BackToWild}");
         }

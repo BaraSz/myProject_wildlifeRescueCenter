@@ -36,11 +36,6 @@ class Program
 
         List<Enclosures> worksites = new List<Enclosures>() { Outdoorenclosures, Indoorenclosures };
 
-        int numberOfAnimal = 0;
-        int numberOfAnimalIndoor = 0;
-        int numberOfAnimalOutdoor = 0;
-
-
         while (true)
         {
             Console.WriteLine("Choose an option:");
@@ -195,6 +190,9 @@ class Program
                                     bool backToWild = bool.Parse(backToWildText);
 
                                     Animals addAnimal = new Animals(animalSpecies, idOfAnimal, injury, backToWild);
+
+                                    var numberOfAnimalIndoor = 0;
+                                    var numberOfAnimalOutdoor = 0;
 
                                     foreach (var a in currentAnimals)
                                     {
@@ -428,7 +426,7 @@ class Program
             else if (userChoice == "3")
             {
                 Console.WriteLine("INDOOR ENCLOSURES: ");
-                Console.WriteLine($"The enclosure is {CapacityOfIndoorEnclosure(numberOfAnimal, currentAnimals)}/{Indoorenclosures.Capacity} full");
+                Console.WriteLine($"The enclosure is {CapacityOfIndoorEnclosure(currentAnimals)}/{Indoorenclosures.Capacity} full");
                 Console.WriteLine();
                 var animalIndoorEnclosureJunior = currentAnimals
                                             .Where(a => a.IDofAnimalSplitEnclosure() == "IE" && a.IDofAnimalSplitCareTaker() == "J");
@@ -474,7 +472,7 @@ class Program
                 }
 
                 Console.WriteLine("OUTDOOR ENCLOSURES: ");
-                Console.WriteLine($"The enclosure is {CapacityOfOutdoorEnclosure(numberOfAnimal, currentAnimals)}/{Outdoorenclosures.Capacity} full");
+                Console.WriteLine($"The enclosure is {CapacityOfOutdoorEnclosure(currentAnimals)}/{Outdoorenclosures.Capacity} full");
                 Console.WriteLine();
                 var animalOutdoorEnclosureJunior = currentAnimals
                                             .Where(a => a.IDofAnimalSplitEnclosure() == "OE" && a.IDofAnimalSplitCareTaker() == "J");
@@ -574,8 +572,9 @@ class Program
 
 
 
-    public static int CapacityOfIndoorEnclosure(int numberOfAnimal, List<Animals> animals)
+    public static int CapacityOfIndoorEnclosure(List<Animals> animals)
     {
+        int numberOfAnimal = 0;
         foreach (var a in animals)
         {
             if (a.IDofAnimalSplitEnclosure() == "IE")
@@ -588,8 +587,9 @@ class Program
         return numberOfAnimal;
     }
 
-    public static int CapacityOfOutdoorEnclosure(int numberOfAnimal, List<Animals> animals)
+    public static int CapacityOfOutdoorEnclosure(List<Animals> animals)
     {
+        var numberOfAnimal = 0;
         foreach (var a in animals)
         {
             if (a.IDofAnimalSplitEnclosure() == "OE")
